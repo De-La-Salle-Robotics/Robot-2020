@@ -32,6 +32,12 @@ public class RightDrivetrainConfigs {
         masterConfigs.remoteFilter0.remoteSensorDeviceID = pigeon.getDeviceID();
         masterConfigs.remoteFilter0.remoteSensorSource = RemoteSensorSource.Pigeon_Yaw;
 
+        masterConfigs.peakCurrentLimit = 40;
+        masterConfigs.peakCurrentDuration = 0;
+        masterConfigs.continuousCurrentLimit = 20;
+
+        masterConfigs.openloopRamp = 0.1;
+
         masterConfigs.motionCruiseVelocity = 1800;
         masterConfigs.motionAcceleration = 3000;
 
@@ -40,6 +46,7 @@ public class RightDrivetrainConfigs {
         master.setNeutralMode(NeutralMode.Brake);
         master.setSensorPhase(true);
         master.selectProfileSlot(1, 1);
+        master.enableCurrentLimit(true);
 
         VictorSPXConfiguration slaveConfigs = new VictorSPXConfiguration();
 

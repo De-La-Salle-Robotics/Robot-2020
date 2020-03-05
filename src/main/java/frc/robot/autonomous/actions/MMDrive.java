@@ -22,6 +22,8 @@ public class MMDrive implements Action {
         _timer = new Timer();
     }
 
+    public String getName() { return "MM Drive"; }
+
     public double distElapsed() {
         return _startDist + _forward;
     }

@@ -17,6 +17,8 @@ public class Score implements Action {
         _timer = new Timer();
     }
 
+    public String getName() { return "Score"; }
+
     public double distElapsed() { return _dist; }
     public double headingElapsed() { return _head; }
     public void initialize(double forward, double heading) { 

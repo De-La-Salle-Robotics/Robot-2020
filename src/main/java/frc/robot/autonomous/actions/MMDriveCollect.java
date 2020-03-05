@@ -23,6 +23,8 @@ public class MMDriveCollect implements Action {
         _timer = new Timer();
     }
 
+    public String getName() { return "MM Drive & Collect"; }
+
     public double distElapsed() {
         return _startDist + _forward;
     }

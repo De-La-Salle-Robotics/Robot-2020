@@ -1,24 +1,24 @@
 package frc.robot.autonomous.routines;
 
 import frc.robot.autonomous.actions.Action;
-import frc.robot.autonomous.actions.MMDrive;
-import frc.robot.autonomous.actions.Score;
 import frc.robot.utils.RobotState;
 import frc.robot.utils.SensorVals;
 
-public class TestCenterScore implements IRoutine {
-    /* Distance, Heading, Time */
-    private Action[] routines = {
-        new MMDrive(-11000, -60 , 2.0), // Drive towards Goal
-        new MMDrive(-16500, 60 , 3.0), // Line up to goal
-        new Score(1), // Shoot Powercells
-    };
+public abstract class BaseActionRoutine implements IRoutine {
 
-    public String getName() { return "Test Center Score"; }
+    public abstract String getName();
+
+    protected abstract Action[] getRoutines();
 
     public void end(RobotState robot) {
         /* Don't end in any state other than what driver wants */
     }
+
+    public BaseActionRoutine() {
+        routines = getRoutines();
+    }
+    
+    private Action[] routines;
 
     private int _maxNum;
     private int _currentAction;
@@ -50,6 +50,7 @@ public class TestCenterScore implements IRoutine {
                 routines[_currentAction].initialize(routines[_currentAction - 1]);
             }
         }
+        _telemetry = _currentAction + ": " + routines[_currentAction].getName();
     }
     public boolean finished() {
         return _finished;

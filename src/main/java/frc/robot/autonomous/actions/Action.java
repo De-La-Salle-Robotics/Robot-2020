@@ -10,4 +10,5 @@ public interface Action {
     public void initialize(Action prevAction);
     public void run(RobotState state, SensorVals sensors);
     public boolean finished();
+    public String getName();
 }

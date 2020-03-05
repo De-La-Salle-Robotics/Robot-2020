@@ -46,8 +46,6 @@ public class DriveForwardScore implements IRoutine{
         } else {
             _finished = true; /* We are finished at this point */
         }
-
-        _telemetry = sensors.leftSideDist + ":::" + sensors.totalRobotDist;
     }
     public void end(RobotState robot) {
         robot.driveTrainState.set(DriveTrainState.PercentOut, 0, 0);

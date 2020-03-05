@@ -3,8 +3,12 @@ package frc.robot.hardware;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+
 import com.ctre.phoenix.CANifier;
 
 public class RobotMap {
@@ -30,6 +34,8 @@ public class RobotMap {
 
     public static CANifier canifier;
 
+    public static PowerDistributionPanel pdp;
+
     public static void initialize() {
         leftMaster = new TalonSRX(1);
         leftSlave = new VictorSPX(1);
@@ -54,7 +60,14 @@ public class RobotMap {
 
         canifier = new CANifier(0);
 
+        pdp = new PowerDistributionPanel();
+
         configControllers();
+
+        UsbCamera src = new UsbCamera("usb0", "/dev/video0");
+        src.setResolution(160, 120);
+        src.setFPS(20);
+        CameraServer.getInstance().startAutomaticCapture(src);
     }
 
     private static void configControllers() {

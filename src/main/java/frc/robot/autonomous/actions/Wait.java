@@ -17,6 +17,8 @@ public class Wait implements Action {
         _timer = new Timer();
     }
 
+    public String getName() { return "Wait"; }
+
     public double distElapsed() { return _dist; }
     public double headingElapsed() { return _head; }
     public void initialize(double forward, double heading) { 

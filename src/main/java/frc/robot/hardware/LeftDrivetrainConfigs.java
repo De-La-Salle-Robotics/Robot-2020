@@ -12,10 +12,17 @@ public class LeftDrivetrainConfigs {
     public static void configSide(TalonSRX master, VictorSPX slave) {
         TalonSRXConfiguration masterConfigs = new TalonSRXConfiguration();
 
+        masterConfigs.openloopRamp = 0.1;
+
+        masterConfigs.peakCurrentLimit = 40;
+        masterConfigs.peakCurrentDuration = 0;
+        masterConfigs.continuousCurrentLimit = 20;
+
         master.configAllSettings(masterConfigs);
         master.setInverted(false);
         master.setNeutralMode(NeutralMode.Brake);
         master.setSensorPhase(true);
+        master.enableCurrentLimit(true);
 
         VictorSPXConfiguration slaveConfigs = new VictorSPXConfiguration();
 

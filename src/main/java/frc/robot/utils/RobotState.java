@@ -28,6 +28,7 @@ public class RobotState{
         PercentOut,
         Position,
         MotionMagic,
+        SlowDrive,
     }
     public class DTStruct {
         public DriveTrainState state;
@@ -72,6 +73,13 @@ public class RobotState{
         double throt = -_driver.getRawAxis(1);
         double wheel = _driver.getRawAxis(4) * 0.5; /* Throttle is negated */
         driveTrainState.set(DriveTrainState.PercentOut, throt + wheel, throt - wheel);
+
+        if(_driver.getRawButton(6)) {
+            /* Right Bumper pressed, slow drive */
+            throt *= 0.3; // Throttle down to 0.3
+            wheel *= 0.6; // Wheel down to 0.6
+            driveTrainState.set(DriveTrainState.SlowDrive, throt + wheel, throt - wheel);
+        }
         
         /* If we press arm down, go down */
         if(_operator.getRawButton(4)) {
